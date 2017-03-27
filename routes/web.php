@@ -16,6 +16,8 @@ Route::get('/', function () {
     //return 'Listagem de produtos';
 });
 
+Route::get('/produtos', 'ProdutoController@lista');
+
 
 
 

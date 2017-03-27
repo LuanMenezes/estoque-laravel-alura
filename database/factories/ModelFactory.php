@@ -22,3 +22,12 @@ $factory->define(estoque\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(estoque\Produto::class, function (Faker\Generator $faker) {
+    return [
+        'nome' => $faker->randomElement(['Geladeira', 'Fogao', 'Microondas', 'Torradeira']),
+        'valor' => $faker->randomElement([100.00, 200.00, 300.00, 400.00]),
+        'descricao' => $faker->randomElement(['tucuruvi', 'santana', 'carandiru']),
+        'quantidade' => $faker->randomElement([10, 20, 30, 40]),
+    ];
+});

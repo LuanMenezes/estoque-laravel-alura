@@ -37,7 +37,7 @@ E também utiliza o projeto [Laradock](https://github.com/laradock/laradock) que
 
 ### Para usar o Docker - Laradock
 
-Copie o diretório "laradock" para a pasta acima do projeto "trackerFX";
+Copie o diretório "laradock" para a pasta acima do projeto "estoque";
 
 Em seguida acesse o diretório "laradock" através do terminal do docker;
 
@@ -83,7 +83,7 @@ Com o servidor embutido do PHP:
 [http://localhost:8000](http://localhost:8000)
 
 Com o nginx do laradock:
-[http://docker-machine-ip/adreninline-ws/public/](http://docker-machine-ip)
+[http://docker-machine-ip/estoque/public/](http://docker-machine-ip)
 
 ### Comandos úteis
 ```sh
