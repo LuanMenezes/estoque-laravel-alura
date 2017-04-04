@@ -1,0 +1,6 @@
+AddHandler php7-script .php
+suPHP_ConfigPath /home/danilorighetto1/
+Options +FollowSymlinks
+RewriteEngine On
+RewriteRule ^$ ws/public/ [L]
+RewriteRule (.*) ws/public/$1 [L]

@@ -13,12 +13,15 @@ class ProdutoController extends Controller
     	$produtos = DB::select('select * from produtos');
 
     	foreach ($produtos as $p) {
-    		$html .= '<br/><br/> Nome: '. $p->nome; 
-    		$html .= '<br/> Valor: '. $p->valor;
-    		$html .= '<br/> Descricao: '. $p->descricao;
-    		$html .= '<br/> Quantidade: '. $p->quantidade;
+    		//$html .= '<br/><br/> Nome: '. $p->nome; 
+    		//$html .= '<br/> Valor: '. $p->valor;
+    		//$html .= '<br/> Descricao: '. $p->descricao;
+    		//$html .= '<br/> Quantidade: '. $p->quantidade;
+
+            $html .= '<li> Nome: '. $p->nome .', Descrição: '. $p->descricao .'</li><br/>';
     	}
     	//dd($produtos);
-    	return $html;
+    	//return $html;
+        return view('listagem')->with('produtos', $produtos);
     }
 }
