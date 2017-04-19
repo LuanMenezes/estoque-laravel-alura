@@ -3,6 +3,7 @@
 namespace estoque\Http\Controllers;
 
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Request
 use Illuminate\Support\Facades\DB;
 
 class ProdutoController extends Controller
@@ -23,5 +24,18 @@ class ProdutoController extends Controller
     	//dd($produtos);
     	//return $html;
         return view('listagem')->with('produtos', $produtos);
+    }
+
+    public function mostra(Request $request){
+        $id = $request->input('id', '1');        
+        $produto = DB::select('select * from produtos where id = ?', [$id]);
+        return view('detalhes')->with('p', $produto[0]);
+    }
+
+    public function mostras(Request $request){
+        $id = $request->route('id');        
+        //$id = Request::route('id'); 
+        $produto = DB::select('select * from produtos where id = ?', [$id]);
+        return view('detalhes')->with('p', $produto[0]);
     }
 }
