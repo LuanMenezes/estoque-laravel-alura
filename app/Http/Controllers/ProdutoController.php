@@ -27,14 +27,23 @@ class ProdutoController extends Controller
     }
 
     public function mostra(Request $request){
-        $id = $request->input('id', '1');        
+        $id = $request->input('id', '1');
+
+        if(empty($id)) {
+            return "Esse produto não existe";
+        }
+
         $produto = DB::select('select * from produtos where id = ?', [$id]);
         return view('detalhes')->with('p', $produto[0]);
     }
 
     public function mostras(Request $request){
         $id = $request->route('id');        
-        //$id = Request::route('id'); 
+        
+        if(empty($id)) {
+            return "Esse produto não existe";
+        }
+
         $produto = DB::select('select * from produtos where id = ?', [$id]);
         return view('detalhes')->with('p', $produto[0]);
     }
