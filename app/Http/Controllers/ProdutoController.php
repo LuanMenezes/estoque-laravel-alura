@@ -5,24 +5,15 @@ namespace estoque\Http\Controllers;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Request
 use Illuminate\Support\Facades\DB;
+use estoque\Produto;
 
 class ProdutoController extends Controller
 {
     public function lista(){
+    	//$produtos = DB::select('select * from produtos');
 
-    	$html = '<h1>Meus produtos: </h1>';
-    	$produtos = DB::select('select * from produtos');
-
-    	foreach ($produtos as $p) {
-    		//$html .= '<br/><br/> Nome: '. $p->nome; 
-    		//$html .= '<br/> Valor: '. $p->valor;
-    		//$html .= '<br/> Descricao: '. $p->descricao;
-    		//$html .= '<br/> Quantidade: '. $p->quantidade;
-
-            $html .= '<li> Nome: '. $p->nome .', Descrição: '. $p->descricao .'</li><br/>';
-    	}
-    	//dd($produtos);
-    	//return $html;
+        /* Usando a Classe Produto para buscar os registros no banco de dados */
+        $produtos = Produto::all();
         return view('listagem')->with('produtos', $produtos);
     }
 
@@ -33,8 +24,11 @@ class ProdutoController extends Controller
             return "Esse produto não existe";
         }
 
-        $produto = DB::select('select * from produtos where id = ?', [$id]);
-        return view('detalhes')->with('p', $produto[0]);
+        /* Usando a Classe Produto para buscar os registros no banco de dados */
+        $produto = Produto::find($id);
+
+        //$produto = DB::select('select * from produtos where id = ?', [$id]);
+        return view('detalhes')->with('p', $produto);
     }
 
     public function mostras(Request $request){
