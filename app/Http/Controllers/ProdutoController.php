@@ -60,6 +60,9 @@ class ProdutoController extends Controller
 
         DB::insert('insert into produtos(nome, quantidade, valor, descricao) values(?, ?, ?, ?)', array($nome, $quantidade, $valor, $descricao));
 
-        return view('adicionado')->with('nome', $nome);
+        //return view('adicionado')->with('nome', $nome);
+        return redirect('/produtos')->withInput($request->only('nome'));
+        /* Outro tipo de redirect */
+        //return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
     }
 }
