@@ -11,6 +11,12 @@ class Produto extends Model
      *
      * @var array
      */
+
+    //Isso faz com que o Modelo ignore os campos de data da criação e data da atualização
+    //public $timestamps = false;
+
+    protected $table = 'produtos';
+
     protected $fillable = [
         'nome', 'valor', 'descricao', 'quantidade',
     ];

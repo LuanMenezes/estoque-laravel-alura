@@ -46,7 +46,7 @@ class ProdutoController extends Controller
         return view('formulario');
     }
 
-    public function adiciona(Request $request){
+    public function adicionaAntigo(Request $request){
         $nome = $request->input('nome');
         $quantidade = $request->input('quantidade');
         $valor = $request->input('valor');
@@ -58,5 +58,26 @@ class ProdutoController extends Controller
         return redirect('/produtos')->withInput($request->only('nome'));
         /* Outro tipo de redirect */
         //return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
+    }
+
+    public function adiciona(Request $request){
+        /*
+        $produto = new Produto();
+        $produto->nome = $request->input('nome');
+        $produto->quantidade = $request->input('quantidade');
+        $produto->valor = $request->input('valor');
+        $produto->descricao = $request->input('descricao');
+        */
+
+        //segunda forma de pegar todos os parametros e criar os produtos da requisição
+        //$params = $request->all();
+        //$produtos = new Produto($params);
+
+        //$produtos->save();
+
+        //terceira forma de pegar todos os parametros e criar os produtos da requisição
+        Produto::create($request->all());
+
+        return redirect('/produtos')->withInput();
     }
 }
