@@ -47,4 +47,19 @@ class ProdutoController extends Controller
         $produto = DB::select('select * from produtos where id = ?', [$id]);
         return view('detalhes')->with('p', $produto[0]);
     }
+
+    public function novo(){
+        return view('formulario');
+    }
+
+    public function adiciona(Request $request){
+        $nome = $request->input('nome');
+        $quantidade = $request->input('quantidade');
+        $valor = $request->input('valor');
+        $descricao = $request->input('descricao');
+
+        DB::insert('insert into produtos(nome, quantidade, valor, descricao) values(?, ?, ?, ?)', array($nome, $quantidade, $valor, $descricao));
+
+        return view('adicionado')->with('nome', $nome);
+    }
 }
