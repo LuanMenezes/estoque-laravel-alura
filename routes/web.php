@@ -29,3 +29,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/login', 'LoginEstoqueController@form');
+Route::post('/login', 'LoginEstoqueController@login');

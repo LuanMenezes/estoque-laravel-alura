@@ -8,10 +8,23 @@ use Illuminate\Support\Facades\DB;
 use estoque\Produto;
 use estoque\Http\Requests\ProdutoRequest;
 use validator;
+use Auth;
 
 class ProdutoController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->middleware('autorizador');
+    }
+
     public function lista(){
+
+        if(Auth::guest()){
+            return redirect('/login');
+        }else{
+
+        }
     	//$produtos = DB::select('select * from produtos');
 
         /* Usando a Classe Produto para buscar os registros no banco de dados */
