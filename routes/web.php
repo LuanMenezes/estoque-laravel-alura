@@ -25,6 +25,7 @@ Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 
 //Route::get('/produtos', 'ProdutoController@lista');
 
+Auth::routes();
 
-
+Route::get('/home', 'HomeController@index');
 
