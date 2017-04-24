@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Request
 use Illuminate\Support\Facades\DB;
 use estoque\Produto;
+use estoque\Http\Requests\ProdutoRequest;
+use validator;
 
 class ProdutoController extends Controller
 {
@@ -31,8 +33,8 @@ class ProdutoController extends Controller
         return view('detalhes')->with('p', $produto);
     }
 
-    public function mostras(Request $request){
-        $id = $request->route('id');        
+    public function mostras($id){
+        //$id = $request->route('id');        
         
         if(empty($id)) {
             return "Esse produto não existe";
@@ -60,7 +62,7 @@ class ProdutoController extends Controller
         //return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
     }
 
-    public function adiciona(Request $request){
+    public function adiciona(ProdutoRequest $request){
         /*
         $produto = new Produto();
         $produto->nome = $request->input('nome');
@@ -76,8 +78,46 @@ class ProdutoController extends Controller
         //$produtos->save();
 
         //terceira forma de pegar todos os parametros e criar os produtos da requisição
+
+
         Produto::create($request->all());
 
         return redirect('/produtos')->withInput();
+    }
+
+    public function adicionaNovo(Request $request){
+        $nome = $request->input('nome');
+        $quantidade = $request->input('quantidade');
+        $valor = $request->input('valor');
+        $descricao = $request->input('descricao');
+
+        //$validator = Validator::make(['nome' => $request->input('nome')], ['nome' => 'required|min:3']);
+
+        //if($validator->fails()){
+            //$msg = $validator->messages();
+            //dd($msg);
+            return redirect('/produtos/novo');
+        //}
+
+        DB::insert('insert into produtos(nome, quantidade, valor, descricao) values(?, ?, ?, ?)', array($nome, $quantidade, $valor, $descricao));
+
+        //return view('adicionado')->with('nome', $nome);
+        return redirect('/produtos')->withInput($request->only('nome'));
+        /* Outro tipo de redirect */
+        //return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
+    }
+
+    public function remove($id){
+        //public function remove(Request $request){
+        //$id = $request->route('id');        
+        
+        if(empty($id)) {
+            return "Esse produto não existe";
+        }
+
+        $produto = Produto::find($id);
+        $produto->delete();
+        //return redirect('/produtos');
+        return redirect()->action('ProdutoController@lista');
     }
 }

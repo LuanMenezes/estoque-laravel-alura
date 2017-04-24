@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/produtos', 'ProdutoController@lista');
 Route::get('/produtos/mostra', 'ProdutoController@mostra');
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostras');
+Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
 Route::get('/produtos/novo', 'ProdutoController@novo');
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 

@@ -29,5 +29,6 @@ $factory->define(estoque\Produto::class, function (Faker\Generator $faker) {
         'valor' => $faker->randomElement([100.00, 200.00, 300.00, 400.00]),
         'descricao' => $faker->randomElement(['tucuruvi', 'santana', 'carandiru']),
         'quantidade' => $faker->randomElement([10, 20, 30, 40]),
+        'tamanho' => $faker->randomElement(['10cm X 20cm', '300cm X 400cm', '725cm X 1024cm', '670cm X 850cm']),
     ];
 });

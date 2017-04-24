@@ -1,6 +1,15 @@
 @extends('principal')
 
 @section('conteudo')
+
+<div class="alert alert-danger">
+	<ul>
+		@foreach($errors->all() as $error)
+		<li>{{ $error }}</li>
+		@endforeach
+	</ul>
+</div>
+
  <form action="/produtos/adiciona" method="POST">
 
  	<input type="hidden" name="_token" value=" {{ csrf_token() }}">
@@ -17,6 +26,11 @@
  	<div class="form-group">
 	 	<label>Quantidade</label>
 	 	<input name="quantidade" class="form-control" />
+ 	</div>
+
+ 	<div class="form-group">
+	 	<label>Tamanho</label>
+	 	<input name="tamanho" class="form-control" />
  	</div>
 
  	<div class="form-group">
